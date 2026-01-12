@@ -22,9 +22,10 @@ class ContactQRBillGenerator extends AbstractController{
     {
         /** @var Contact[] $contacts */
         $contacts = $this->contactRepository->findByIds($request->getPayload()->all('ids'));
+        $amount =  $request->getPayload()->get('amount');
         $files = [];
         foreach ($contacts as $contact){
-            $qrBill = $this->qrCodeGenerator->generate($contact);
+            $qrBill = $this->qrCodeGenerator->generate($contact, $amount) ;
             $files[strtolower($contact->getFirstName().'_'.$contact->getLastName().'.pdf')] =
                 $this->qrBillPDFGenerator->generate($qrBill);
         }

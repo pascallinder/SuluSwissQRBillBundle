@@ -20,7 +20,7 @@ readonly class QRCodeGenerator
         private QRBillConfig $qrBillConfig
     ){}
 
-    public function generate(ContactInterface $contact): QrBill{
+    public function generate(ContactInterface $contact, ?float $amount = null): QrBill{
         $qrBill = QrBill::create();
         $qrBill->setCreditor(
             StructuredAddress::createWithStreet(
@@ -38,20 +38,25 @@ readonly class QRCodeGenerator
                 $this->qrBillConfig->iban
             )
         );
-        if($contact->getMainAddress() && $contact->getMainAddress()?->getStreet()
-        && $contact->getMainAddress()->getZip() && $contact->getMainAddress()->getCity()
-        && $contact->getMainAddress()->getCountry()){
-            $qrBill->setUltimateDebtor(StructuredAddress::createWithoutStreet(
-                $contact->getFirstName() . ' ' . $contact->getLastName(),
-                $contact->getMainAddress()->getStreet(),
-                null,
-                $contact->getMainAddress()->getZip(),
-            ));
+        if(sizeof($contact->getAddresses())){
+            $address = $contact->getAddresses()[0];
+            if($address->getStreet() && $address->getZip() && $address->getCity()){
+                $qrBill->setUltimateDebtor(StructuredAddress::createWithStreet(
+                    $contact->getFirstName() . ' ' . $contact->getLastName(),
+                    $address->getStreet(),
+                    null,
+                    $address->getZip(),
+                    $address->getCity(),
+                    'CH'
+                ));
+            }
         }
+
 
         $qrBill->setPaymentAmountInformation(
             PaymentAmountInformation::create(
-                'CHF'
+                'CHF',
+                $amount
             )
         );
         $qrBill->setPaymentReference(

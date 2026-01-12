@@ -1,4 +1,6 @@
-app:
-    index_now_config_headline: IndexNow Dashboard
-    index_now_config_description: Speeds up indexing of the website by search engines through immediate notification.
-    index_now_start: Start IndexNow
+swiss-qr-bill:
+    dialog:
+        title: Invoice Generation
+        description: Which amount should be used for the generation?
+    list:
+        generate-pdf: Generate PDF Invoices
