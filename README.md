@@ -29,16 +29,12 @@ SuluIndexNowBundle:
 ```
 4. Add the file `config/packages/sulu_swiss_qr_bill.yaml` with the following configuration and replace #your key here with your actual key:
 ```yaml
-sulu_index_now:
-    key: #your key here
-    search_engines:
-        IndexNow: 'https://api.indexnow.org/indexnow'
-        Amazon: 'https://indexnow.amazonbot.amazon/indexnow'
-        Bing: 'https://www.bing.com/indexnow'
-        Naver: 'https://searchadvisor.naver.com/indexnow'
-        Seznam: 'https://search.seznam.cz/indexnow'
-        Yandex: 'https://yandex.com/indexnow'
-        Yep: 'https://indexnow.yep.com/indexnow'
+sulu_swiss_qr_bill:
+  iban: 'CH5604835012345678009'
+  name: 'Example'
+  street: 'Nowherestreet 23'
+  postalCode: 9999
+  city: 'Somewhere'
 ``` 
 5. Reference the frontend code by adding the following to your `assets/admin/package.json`:
 
