@@ -2,7 +2,6 @@
     "name": "linderp/sulu-swiss-qr-bill-bundle",
     "description": "Swiss QR Bill generator for Sulu CMS",
     "type": "symfony-bundle",
-    "version": "0.1",
     "require": {
         "php": "^8.2",
         "sulu/sulu": "^2.6",
@@ -22,7 +21,7 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Linderp\\SuluSwissQRBillBundle\\": "src/"
+            "Linderp\\SuluSwissQRBillBundle\\": "./"
         }
     },
     "authors": [

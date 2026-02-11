@@ -1,10 +1,10 @@
 # SuluSwissQRBillBundle
 
-**Sulu bundle that integrates swiss qr bill generation for saved contacts**.
-Implementation of the php package [schoero/swissqrbill](https://github.com/schoero/swissqrbill)
+**Sulu bundle that integrates Swiss QR bill generation for saved contacts.**
+Implementation uses the `schoero/swissqrbill` package (https://github.com/schoero/swissqrbill).
 ## Installation
 
-This bundle requires PHP 8.2 and Sulu 2.6
+This bundle requires PHP 8.2 and Sulu 2.6.
 
 1. Open a command console, enter your project directory and run:
 
@@ -24,23 +24,25 @@ return [
 2. Register the new routes by adding the following to your `routes_admin.yaml`:
 
 ```yaml
-SuluIndexNowBundle:
+SuluSwissQRBillBundle:
     resource: "@SuluSwissQRBillBundle/Resources/config/routes_admin.yml"
 ```
-4. Add the file `config/packages/sulu_swiss_qr_bill.yaml` with the following configuration and replace #your key here with your actual key:
+3. Add the file `config/packages/sulu_swiss_qr_bill.yaml` with the following configuration:
 ```yaml
 sulu_swiss_qr_bill:
   iban: 'CH5604835012345678009'
   name: 'Example'
   street: 'Nowherestreet 23'
+  buildingNumber: null
   postalCode: 9999
   city: 'Somewhere'
+  country: 'CH'
 ``` 
-5. Reference the frontend code by adding the following to your `assets/admin/package.json`:
+4. Reference the frontend code by adding the following to your `assets/admin/package.json`:
 
 ```json
 "dependencies": {
-    "sulu-swiss-qr-bill-bundle": "file:../../vendor/linderp/sulu-swiss-qr-bill-bundle/src/Resources/js"
+    "sulu-swiss-qr-bill-bundle": "file:../../vendor/linderp/sulu-swiss-qr-bill-bundle/Resources/js"
 }
 ```
 
@@ -56,3 +58,8 @@ import "sulu-swiss-qr-bill-bundle";
 cd assets/admin
 npm run build
 ```
+
+## Usage
+
+- Go to **Contacts** and select one or more contacts.
+- Use the toolbar action **Generate Swiss QR Bills** to download a `qr-bills.zip`.
